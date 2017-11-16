@@ -1,7 +1,12 @@
 import json
-from subprocess import check_output
+import subprocess
 
-config_file = open("config.json")
-config = json.load(config_file)
+def c(cmd):
+    return subprocess.check_output(cmd, universal_newlines=True).strip()
 
-print(config['project'])
+def init():
+    config_file = open("config.json")
+    config = json.load(config_file)
+
+origin_url=c(["git", "config", "--local", "remote.origin.url"])
+print(origin_url)
